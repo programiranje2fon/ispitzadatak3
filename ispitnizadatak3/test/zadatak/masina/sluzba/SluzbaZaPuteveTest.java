@@ -34,7 +34,8 @@ public class SluzbaZaPuteveTest {
 		assertTrue("U klasi SluzbaZaPuteve nije definisan atribut masine",
 				TestUtil.doesFieldExist(SluzbaZaPuteve.class, "masine"));
 	}
-
+ 
+	
 	@Test
 	public void atribut_masina_vidljivost() {
 		assertTrue("Atribut masine nije privatan",
@@ -120,7 +121,9 @@ public class SluzbaZaPuteveTest {
 
 	@Test(timeout = 2000)
 	public void metoda_servisirajSveMasine() {
-
+		//Potrebno uraditi
+		//Problem je to sto nije navedeno u tekstu
+		//u kom formatu je potrebno zapisivati podatke o masinama
 	}
 
 	@Test
