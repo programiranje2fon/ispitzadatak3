@@ -35,3 +35,5 @@ tekstualni fajl “servis.txt” upisati podatke samo onih mašina koje su tom p
 MasinaZaCiscenjeSnega. Ovaj novi niz se formira tako što se kopiraju svi elementi iz postojećeg
 niza mašina ali tako da prvo budu uneti svi objekti klase Ratrak, a onda i svi objekti klase Grtalica.
 Uz to, ovaj novi niz ne sme da ima praznih mesta tj. elemenata koji imaju NULL vrednost.
+
+![Slika](img.png)
