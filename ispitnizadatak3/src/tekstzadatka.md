@@ -11,13 +11,13 @@ nedozvoljenih vrednosti potrebno je baciti izuzetak sa odgovarajućom porukom.
 o mašini uz odgovarajući tekst.
 * Javnu apstraktnu metodu servisiraj koja nema ulaznih argumenata a vraća boolean vrednost.
 
-Napraviti javnu klasu **Ratrak** u paketu **masina** koja nasleđuje aps. kl. MasinaZaCiscenjeSnega i sadrži:
+Napraviti javnu klasu **Ratrak** u paketu **masina** koja nasleđuje apstraktnu klasu **MasinaZaCiscenjeSnega** i sadrži:
 * Implementiranu javnu apstraktnu metodu servisiraj koja proverava da li je datum servisa prošao. Ako
 jeste, metoda zaista “servisira” mašinu tj. postavlja vrednost atributa vremeServisa na datum koji je
 __godinu dana kasnije u odnosu na datum servisa koji je tu trenutno upisan__ i vraća true. Ako
 nije, metoda samo vraća false.
 
-Napraviti javnu klasu **Grtalica** u paketu **masina** koja nasleđuje aps. kl. MasinaZaCiscenjeSnega i sadrži:
+Napraviti javnu klasu **Grtalica** u paketu **masina** koja nasleđuje apstraktnu klasu  **MasinaZaCiscenjeSnega** i sadrži:
 * Implementiranu javnu apstraktnu metodu servisiraj koja proverava da li je datum servisa prošao. Ako
 jeste, metoda zaista “servisira” mašinu tj. postavlja vrednost atributa vremeServisa na datum koji je
 __godinu dana kasnije u odnosu na trenutni datum__ i vraća true. Ako nije, metoda samo vraća false.
@@ -36,4 +36,3 @@ MasinaZaCiscenjeSnega. Ovaj novi niz se formira tako što se kopiraju svi elemen
 niza mašina ali tako da prvo budu uneti svi objekti klase Ratrak, a onda i svi objekti klase Grtalica.
 Uz to, ovaj novi niz ne sme da ima praznih mesta tj. elemenata koji imaju NULL vrednost.
 
-![Slika](img.png)

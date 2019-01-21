@@ -19,11 +19,12 @@ public class SluzbaZaPuteve {
 	}
 	
 	public void unesiMasinu(MasinaZaCiscenjeSnega m) throws Exception{
-		for (int i=0;i<masine.length;i++)
+		for (int i=0;i<masine.length;i++) {
 			if (masine[i]==null){
 				masine[i]=m;
 				return;
 			}
+		}
 		
 		throw new Exception("U nizu nema mesta");
 	}
@@ -35,9 +36,10 @@ public class SluzbaZaPuteve {
 			//Prolazi se kroz niz i za svaku masinu koja nije null
 			//i koja je servisirana (metoda servisiraj vraca tad true)
 			//njeni podaci se upisuju u tekstualni fajl.
-			for (int i = 0; i < masine.length; i++) 
+			for (int i = 0; i < masine.length; i++) {
 				if (masine[i]!=null && masine[i].servisiraj())
 					out.println(masine[i]);
+			}
 			
 			out.close();
 		}catch(Exception e){

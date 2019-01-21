@@ -1,4 +1,4 @@
-package zadatak.masina.apstr;
+package masina.apstr;
 
 import static org.junit.Assert.assertTrue;
 

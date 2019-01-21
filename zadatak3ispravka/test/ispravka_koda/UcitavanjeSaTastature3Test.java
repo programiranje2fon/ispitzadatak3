@@ -1,4 +1,4 @@
-package zadatak.ispravka_koda;
+package ispravka_koda;
 
 import static org.junit.Assert.assertTrue;
 
@@ -53,7 +53,7 @@ public class UcitavanjeSaTastature3Test {
 		assertTrue("Metoda ucitajIProveriNivenov nije javna", TestUtil.hasMethodModifier(UcitavanjeSaTastature3.class, "ucitajIProveriNivenov", null, Modifier.PUBLIC));
 	}
 	
-	@Test(timeout = 2000)
+	@Test
 	public void metoda_ucitajIProveriNivenov() {
 		for(int i = 1; i <= 1000; i++) {
 			UcitavanjeSaTastature3.ucitajIProveriNivenov();

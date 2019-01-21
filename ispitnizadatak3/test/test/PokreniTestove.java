@@ -10,10 +10,10 @@ import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 
-import zadatak.masina.GrtalicaTest;
-import zadatak.masina.RatrakTest;
-import zadatak.masina.apstr.MasinaZaCiscenjeSnegaTest;
-import zadatak.masina.sluzba.SluzbaZaPuteveTest;
+import masina.GrtalicaTest;
+import masina.RatrakTest;
+import masina.apstr.MasinaZaCiscenjeSnegaTest;
+import masina.sluzba.SluzbaZaPuteveTest;
 
 
 public class PokreniTestove {

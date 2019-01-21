@@ -1,4 +1,4 @@
-package zadatak.masina.sluzba;
+package masina.sluzba;
 
 import static org.junit.Assert.assertTrue;
 

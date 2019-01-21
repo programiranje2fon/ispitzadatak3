@@ -1,4 +1,4 @@
-package zadatak.masina;
+package masina;
 
 import static org.junit.Assert.assertTrue;
 
@@ -55,7 +55,7 @@ public class GrtalicaTest {
 		boolean result = instance.servisiraj();
 		assertTrue("Metoda servisiraj vraca " + result + " iako je vrednost atributa vremeServisa "
 				+ vremeServisa.getTime().toString(), result);
-		GregorianCalendar novoVremeServisa = new GregorianCalendar();
+		GregorianCalendar novoVremeServisa = instance.getVremeServisa();
 		novoVremeServisa.set(novoVremeServisa.get(GregorianCalendar.YEAR) + 1,
 				novoVremeServisa.get(GregorianCalendar.MONTH), novoVremeServisa.get(GregorianCalendar.DAY_OF_MONTH));
 		assertTrue("Nakon izvrsenja metode servisiraj vreme servisa je promenjeno sa "
