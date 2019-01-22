@@ -23,6 +23,5 @@ public class UcitavanjeSaTastature3 {
 			}
 		} catch (Exception e) {
 		}
-		s.close();
 	}
 }
