@@ -152,7 +152,7 @@ public class SluzbaZaPuteve {
 		//bude jednak broju elemenata iz niza masina koji nisu null.
 		//Brojac elemenata novog niza se postavlja na 0.
 		MasinaZaCiscenjeSnega[] noviNiz = new MasinaZaCiscenjeSnega[brojac];
-		int brojElemenata = 0;
+		brojac = 0;
 		
 		//Unosenje svih ratraka u niz od pocetka niza pa dokle se popuni
 		for (int i = 0; i < masine.length; i++) 
