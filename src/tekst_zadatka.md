@@ -1,4 +1,4 @@
-#Zadatak 3 
+#Zadatak 1 – februar 2012
 Napraviti javnu apstraktnu klasu **MasinaZaCiscenjeSnega** u paketu **masina.apstr** koja ima:
 * Privatni atribut **markaIModel** koji predstavlja naziv marke i modela mašine.
 * Privatni atribut **vremeServisa** koji predstavlja datum posle kojeg je potrebno servisirati mašinu
@@ -36,7 +36,7 @@ MasinaZaCiscenjeSnega. Ovaj novi niz se formira tako što se kopiraju svi elemen
 niza mašina ali tako da prvo budu uneti svi objekti klase Ratrak, a onda i svi objekti klase Grtalica.
 Uz to, ovaj novi niz ne sme da ima praznih mesta tj. elemenata koji imaju NULL vrednost.
 
-#Zadatak 3 - ispravka koda
+#Zadatak 2
 U produžetku teksta je dat kod klase sa metodom koja bi trebalo da sa tastature učitava više celih brojeva i
 proverava i ispisuje na ekranu (za svaki od njih) da li je u pitanju Nivenov broj. Učitavanje se vrši za svaki
 broj u posebnom redu, a kraj je kad se unese nešto što nije broj. Nivenovi brojevi su oni celi brojevi koji su
