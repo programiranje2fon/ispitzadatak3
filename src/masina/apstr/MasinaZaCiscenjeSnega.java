@@ -1,11 +1,11 @@
 package masina.apstr;
 
-import java.util.GregorianCalendar;
+import java.time.LocalDate;
 
 public abstract class MasinaZaCiscenjeSnega {
 	
 	private String markaIModel;
-	private GregorianCalendar vremeServisa;
+	private LocalDate vremeServisa;
 	
 	public String getMarkaIModel() {
 		return markaIModel;
@@ -18,12 +18,12 @@ public abstract class MasinaZaCiscenjeSnega {
 		this.markaIModel = markaIModel;
 	}
 	
-	public GregorianCalendar getVremeServisa() {
+	public LocalDate getVremeServisa() {
 		return vremeServisa;
 	}
 	
-	public void setVremeServisa(GregorianCalendar vremeServisa) {
-		if (vremeServisa==null || !vremeServisa.after(new GregorianCalendar()))
+	public void setVremeServisa(LocalDate vremeServisa) {
+		if (vremeServisa==null || !vremeServisa.isAfter(LocalDate.now()))
 			throw new RuntimeException("Vreme servisa ne sme biti null i mora se odnositi na buducnost");
 		
 		this.vremeServisa = vremeServisa;

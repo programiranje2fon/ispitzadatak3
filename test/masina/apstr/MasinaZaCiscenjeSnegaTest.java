@@ -3,7 +3,7 @@ package masina.apstr;
 import static org.junit.Assert.assertTrue;
 
 import java.lang.reflect.Modifier;
-import java.util.GregorianCalendar;
+import java.time.LocalDate;
 
 import org.junit.After;
 import org.junit.Before;
@@ -89,43 +89,39 @@ public class MasinaZaCiscenjeSnegaTest {
 	@Test
 	public void metoda_setVremeServisa_vidljivost() {
 		assertTrue("Metoda setVremeServisa nije javna", TestUtil.hasMethodModifier(MasinaZaCiscenjeSnega.class,
-				"setVremeServisa", new Class<?>[] { GregorianCalendar.class }, Modifier.PUBLIC));
+				"setVremeServisa", new Class<?>[] { LocalDate.class }, Modifier.PUBLIC));
 	}
 
 	@Test(expected = RuntimeException.class)
 	public void metoda_setVremeServisa_null() {
-		GregorianCalendar vremeServisa = null;
+        LocalDate vremeServisa = null;
 		instance.setVremeServisa(vremeServisa);
 		assertTrue("Za prosledjeni argument null metoda setVremeServisa ne baca neproveravani izuzetak", false);
 	}
 
 	@Test(expected = RuntimeException.class)
 	public void metoda_setVremeServisa_prosliDatum() {
-		GregorianCalendar temp = new GregorianCalendar();
-		GregorianCalendar vremeServisa = new GregorianCalendar(temp.get(GregorianCalendar.YEAR) - 1,
-				temp.get(GregorianCalendar.MONTH), temp.get(GregorianCalendar.DAY_OF_MONTH));
+        LocalDate vremeServisa = LocalDate.now().minusDays(2);
 		instance.setVremeServisa(vremeServisa);
-		assertTrue("Za prosledjeni argument " + vremeServisa.getTime().toString()
+		assertTrue("Za prosledjeni argument " + vremeServisa
 				+ " metoda setVremeServisa ne baca neproveravani izuzetak", false);
 	}
 
 	@Test(expected = RuntimeException.class)
 	public void metoda_setVremeServisa_trenutniDatum() {
-		GregorianCalendar vremeServisa = new GregorianCalendar();
+        LocalDate vremeServisa = LocalDate.now();
 		instance.setVremeServisa(vremeServisa);
-		assertTrue("Za prosledjeni argument " + vremeServisa.getTime().toString()
+		assertTrue("Za prosledjeni argument " + vremeServisa
 				+ " metoda setVremeServisa ne baca neproveravani izuzetak", false);
 	}
 
 	@Test
 	public void metoda_setVremeServisa_bubuciDatum() {
-		GregorianCalendar temp = new GregorianCalendar();
-		GregorianCalendar vremeServisa = new GregorianCalendar(temp.get(GregorianCalendar.YEAR) + 1,
-				temp.get(GregorianCalendar.MONTH), temp.get(GregorianCalendar.DAY_OF_MONTH));
+        LocalDate vremeServisa = LocalDate.now().plusDays(2);
 		try {
 			instance.setVremeServisa(vremeServisa);
 		} catch (RuntimeException e) {
-			assertTrue("Za prosledjeni argument " + vremeServisa.getTime().toString()
+			assertTrue("Za prosledjeni argument " + vremeServisa
 					+ " metoda setVremeServisa baca neproveravani izuzetak", false);
 			e.printStackTrace();
 		}
@@ -134,17 +130,18 @@ public class MasinaZaCiscenjeSnegaTest {
 	@Test
 	public void metoda_toString() {
 		String markaIModel = "CAT 32";
-		GregorianCalendar vremeServisa = new GregorianCalendar(new GregorianCalendar().get(GregorianCalendar.YEAR) + 1,
-				1, 1);
+        LocalDate vremeServisa = LocalDate.now().plusDays(3);
 		instance.setMarkaIModel(markaIModel);
 		instance.setVremeServisa(vremeServisa);
 		String result = instance.toString();
 		assertTrue("String koji vraca metoda to String ne sadrzi vrednost atributa markaIModel",
 				result.indexOf(instance.getMarkaIModel()) != -1);
 		assertTrue("String koji vraca metoda to String ne sadrzi godinu servisa",
-				result.indexOf(((Integer) instance.getVremeServisa().get(GregorianCalendar.YEAR)).toString()) != -1);
+				result.indexOf(vremeServisa.getYear()+"") != -1);
+        assertTrue("String koji vraca metoda to String ne sadrzi mesec servisa", result
+                .indexOf(vremeServisa.getMonthValue()+"") != -1);
 		assertTrue("String koji vraca metoda to String ne sadrzi dan servisa", result
-				.indexOf(((Integer) instance.getVremeServisa().get(GregorianCalendar.DAY_OF_MONTH)).toString()) != -1);
+				.indexOf(vremeServisa.getDayOfMonth()+"") != -1);
 	}
 
 	@Test

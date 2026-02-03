@@ -3,8 +3,7 @@ package masina;
 import static org.junit.Assert.assertTrue;
 
 import java.lang.reflect.Field;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.time.LocalDate;
 
 import org.junit.After;
 import org.junit.Before;
@@ -25,12 +24,6 @@ public class GrtalicaTest {
 		instance = null;
 	}
 
-	private static boolean uporedi(GregorianCalendar g1, GregorianCalendar g2) {
-		return g1.get(GregorianCalendar.YEAR) == g2.get(GregorianCalendar.YEAR)
-				&& g1.get(GregorianCalendar.MONTH) == g2.get(GregorianCalendar.MONTH)
-				&& g1.get(GregorianCalendar.DAY_OF_MONTH) == g2.get(GregorianCalendar.DAY_OF_MONTH);
-	}
-
 	@Test
 	public void metoda_servisiraj_datumProsao() {
 		Field f1 = null;
@@ -41,8 +34,7 @@ public class GrtalicaTest {
 			e.printStackTrace();
 		}
 		f1.setAccessible(true);
-		GregorianCalendar vremeServisa = new GregorianCalendar();
-		vremeServisa.add(Calendar.DATE, -1);
+		LocalDate vremeServisa = LocalDate.now().minusDays(3);
 		try {
 			f1.set(instance, vremeServisa);
 		} catch (IllegalArgumentException e) {
@@ -54,28 +46,26 @@ public class GrtalicaTest {
 		}
 		boolean result = instance.servisiraj();
 		assertTrue("Metoda servisiraj vraca " + result + " iako je vrednost atributa vremeServisa "
-				+ vremeServisa.getTime().toString(), result);
-		GregorianCalendar novoVremeServisa = instance.getVremeServisa();
-		novoVremeServisa.set(novoVremeServisa.get(GregorianCalendar.YEAR) + 1,
-				novoVremeServisa.get(GregorianCalendar.MONTH), novoVremeServisa.get(GregorianCalendar.DAY_OF_MONTH));
+				+ vremeServisa, result);
+		LocalDate novoVremeServisa = instance.getVremeServisa();
+
 		assertTrue("Nakon izvrsenja metode servisiraj vreme servisa je promenjeno sa "
-				+ vremeServisa.getTime().toString() + " na " + instance.getVremeServisa().getTime().toString()
-				+ " umesto na " + novoVremeServisa.getTime().toString(),
-				uporedi(novoVremeServisa, instance.getVremeServisa()));
+				+ vremeServisa + " na " + novoVremeServisa
+				+ " umesto na " + vremeServisa.plusYears(1),
+				novoVremeServisa.minusYears(1).equals(vremeServisa));
 
 	}
 
 	@Test
 	public void metoda_servisiraj_datumUBuducnosti() {
-		GregorianCalendar vremeServisa = new GregorianCalendar(new GregorianCalendar().get(GregorianCalendar.YEAR) + 1,
-				1, 1);
+		LocalDate vremeServisa = LocalDate.now().plusYears(1);
 		instance.setVremeServisa(vremeServisa);
 		boolean result = instance.servisiraj();
 		assertTrue("Metoda servisiraj vraca " + result + " iako je vrednost atributa vremeServisa "
-				+ vremeServisa.getTime().toString(), !result);
+				+ vremeServisa.toString(), !result);
 		assertTrue(
-				"Nakon izvrsenja metode servisiraj vreme servisa je promenjeno sa " + vremeServisa.getTime().toString()
-						+ " na " + instance.getVremeServisa().getTime().toString(),
-				uporedi(vremeServisa, instance.getVremeServisa()));
+				"Nakon izvrsenja metode servisiraj vreme servisa je greskom promenjeno sa " + vremeServisa
+						+ " na " + instance.getVremeServisa().toString(),
+				vremeServisa.equals(instance.getVremeServisa()));
 	}
 }
