@@ -1,8 +1,9 @@
-#Zadatak 3 
+# Zadatak 1 
+
 Napraviti javnu apstraktnu klasu **MasinaZaCiscenjeSnega** u paketu **masina.apstr** koja ima:
 * Privatni atribut **markaIModel** koji predstavlja naziv marke i modela mašine.
 * Privatni atribut **vremeServisa** koji predstavlja datum posle kojeg je potrebno servisirati mašinu
-(klasa GregorianCalendar)
+(klasa LocalDate)
 * Odgovarajuće javne get i set metode za ove atribute. Nedozvoljene vrednosti za atribut
 markaIModel su null i __svaki String koji ne sadrži blanko znak__ (znak za prazno mesto). Vreme
 servisa mora da bude neki datum u budućnosti i ne sme da bude null. U slučaju unosa ovih
@@ -36,7 +37,8 @@ MasinaZaCiscenjeSnega. Ovaj novi niz se formira tako što se kopiraju svi elemen
 niza mašina ali tako da prvo budu uneti svi objekti klase Ratrak, a onda i svi objekti klase Grtalica.
 Uz to, ovaj novi niz ne sme da ima praznih mesta tj. elemenata koji imaju NULL vrednost.
 
-#Zadatak 3 - ispravka koda
+# Zadatak 2 - ispravka koda
+
 U produžetku teksta je dat kod klase sa metodom koja bi trebalo da sa tastature učitava više celih brojeva i
 proverava i ispisuje na ekranu (za svaki od njih) da li je u pitanju Nivenov broj. Učitavanje se vrši za svaki
 broj u posebnom redu, a kraj je kad se unese nešto što nije broj. Nivenovi brojevi su oni celi brojevi koji su
@@ -49,48 +51,33 @@ Dati kod se kompajlira, ali ne radi to šta treba. Napraviti javnu klasu **Ucita
 kako treba. Napraviti test klasu i, koristeći njenu main metodu, pozvati metodu
 **UcitajIProveriNivenovBroj()** i proveriti njen rad.
 
-package ispravka_koda;
-
-import java.util.Scanner;
-
-public class UcitavanjeSaTastature3 {
-
->public static void ucitajIProveriNivenov() {
-
->>Scanner s = new Scanner(System.in);
-
->>try {
-
->>>while (true) {
-
->>>>System.out.print("Unesite ceo broj:");
-
->>>>int broj = s.nextInt();
-
->>>>int sumaCifara = 0;
-
->>>>while (broj >= 0) {
-
->>>>>sumaCifara = sumaCifara + broj % 10;
-
->>>>>broj = broj / 10;
-
->>>>}
-
->>>> if (broj%sumaCifara==0)
-
->>>>>System.out.println("Jeste");
-
->>>>else System.out.println("Nije");
-
->>>}
-
->>} catch (Exception e) {
-
->>}
-
->>s.close();
-
->}
-
-}
+    package ispravka_koda;
+    
+    import java.util.Scanner;
+    
+    public class UcitavanjeSaTastature3 {
+    
+        public static void ucitajIProveriNivenov() {
+    
+            Scanner s = new Scanner(System.in);
+            try {
+                while (true) {
+                        System.out.print("Unesite ceo broj:");
+                        int broj = s.nextInt();
+                        int sumaCifara = 0;
+    
+                        while (broj = 0) {
+                            sumaCifara = sumaCifara + broj % 10;
+                            broj = broj / 10;
+                        }
+    
+                        if (broj%sumaCifara==0)
+                            System.out.println("Jeste");
+                        else System.out.println("Nije");
+    
+                    }
+            } catch (Exception e) {
+        }
+        s.close();
+      }
+    }
