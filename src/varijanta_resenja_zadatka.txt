@@ -1,31 +1,31 @@
 package masina.apstr;
 
-import java.util.GregorianCalendar;
+import java.time.LocalDate;
 
 public abstract class MasinaZaCiscenjeSnega {
-	
+
 	private String markaIModel;
-	private GregorianCalendar vremeServisa;
-	
+	private LocalDate vremeServisa;
+
 	public String getMarkaIModel() {
 		return markaIModel;
 	}
-	
+
 	public void setMarkaIModel(String markaIModel) {
 		if (markaIModel==null || markaIModel.indexOf(' ')==-1)
 			throw new RuntimeException("Marka i model ne smeju biti null i moraju sadrzati blanko znak");
-			
+
 		this.markaIModel = markaIModel;
 	}
-	
-	public GregorianCalendar getVremeServisa() {
+
+	public LocalDate getVremeServisa() {
 		return vremeServisa;
 	}
-	
-	public void setVremeServisa(GregorianCalendar vremeServisa) {
-		if (vremeServisa==null || !vremeServisa.after(new GregorianCalendar()))
+
+	public void setVremeServisa(LocalDate vremeServisa) {
+		if (vremeServisa==null || !vremeServisa.isAfter(LocalDate.now()))
 			throw new RuntimeException("Vreme servisa ne sme biti null i mora se odnositi na buducnost");
-		
+
 		this.vremeServisa = vremeServisa;
 	}
 
@@ -33,31 +33,28 @@ public abstract class MasinaZaCiscenjeSnega {
 		return "MasinaZaCiscenjeSnega [markaIModel=" + markaIModel
 				+ ", vremeServisa=" + vremeServisa + "]";
 	}
-	
+
 	public abstract boolean servisiraj();
-	
+
 
 }
 
 package masina;
 
-import java.util.GregorianCalendar;
+import java.time.LocalDate;
 
 import masina.apstr.MasinaZaCiscenjeSnega;
 
 public class Ratrak extends MasinaZaCiscenjeSnega {
 
 	public boolean servisiraj() {
-		if (getVremeServisa().before(new GregorianCalendar())){
-			GregorianCalendar vremeServisa = getVremeServisa();
-			
-			//Novo vreme servisa se postavlja na godinu dana kasnije
-			GregorianCalendar novoVremeServisa=new GregorianCalendar();
-			novoVremeServisa.set(vremeServisa.get(GregorianCalendar.YEAR)+1,
-								 vremeServisa.get(GregorianCalendar.MONTH),
-								 vremeServisa.get(GregorianCalendar.DAY_OF_MONTH));
-			
-			setVremeServisa(novoVremeServisa);
+		if (getVremeServisa().isBefore(LocalDate.now())){
+            LocalDate vremeServisa = getVremeServisa();
+
+            //Novo vreme servisa se postavlja na godinu dana kasnije
+            LocalDate novoVremeServisa = vremeServisa.plusYears(1);
+
+            setVremeServisa(novoVremeServisa);
 			return true;
 		}
 		else return false;
@@ -67,22 +64,19 @@ public class Ratrak extends MasinaZaCiscenjeSnega {
 
 package masina;
 
-import java.util.GregorianCalendar;
+import java.time.LocalDate;
 
 import masina.apstr.MasinaZaCiscenjeSnega;
 
 public class Grtalica extends MasinaZaCiscenjeSnega {
 
 	public boolean servisiraj() {
-		if (getVremeServisa().before(new GregorianCalendar())){
-			GregorianCalendar vremeServisa = getVremeServisa();
-			
+		if (getVremeServisa().isBefore(LocalDate.now())){
+            LocalDate vremeServisa = getVremeServisa();
+
 			//Novo vreme servisa se postavlja na godinu dana kasnije
-			GregorianCalendar novoVremeServisa=new GregorianCalendar();
-			novoVremeServisa.set(vremeServisa.get(GregorianCalendar.YEAR)+1,
-								 vremeServisa.get(GregorianCalendar.MONTH),
-								 vremeServisa.get(GregorianCalendar.DAY_OF_MONTH));
-			
+            LocalDate novoVremeServisa = vremeServisa.plusYears(1);
+
 			setVremeServisa(novoVremeServisa);
 			return true;
 		}
